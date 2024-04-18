@@ -37,7 +37,7 @@ def dispGalaxy(stdscr, gal, loc):
     else:
         stdscr.addstr(loc[1], loc[0], " ", curses.color_pair(5))
 
-def dispStar(stdscr, star, loc):
+def dispStar(stdscr, star, loc, sess):
     curses.textpad.rectangle(stdscr, 0, 42, 23, 78)
     stdscr.addstr(1, 45, star.formattedname, curses.color_pair(star.typ))
     if star.owner is not None:
@@ -73,7 +73,7 @@ def mainScreenTurnOn(stdscr, gal, loc, sess, MAC=False):
     stdscr.erase()
     dispGalaxy(stdscr, gal, loc)
     if gal.stuff.has_key((loc[0], loc[1])):
-        dispStar(stdscr, gal.stuff[(loc[0], loc[1])], loc)
+        dispStar(stdscr, gal.stuff[(loc[0], loc[1])], loc, sess)
     else:
         stdscr.addstr(1, 45, "INTERSTELLAR SPACE")
         stdscr.addstr(4, 45, "Galactic Coordinates " + str(loc))
